@@ -94,7 +94,7 @@ export default function MainPage() {
 		  ))}
 		</div>
 		<button onClick={handleGenerateRecipes} style={{ color: 'green', fontWeight: 'bold', marginLeft: "25%", paddingTop: "10px", paddingBottom:"30px"}}>Generate receipt</button>
-		<button onClick={() => window.location.href = "http://localhost:3000/insert"} style={{ color: 'orange', fontWeight: 'bold', marginBottom: "30px", paddingLeft:"450px", marginRight: "25%" }}>Go to your receipts</button>
+		<button onClick={() => window.location.href = "https://main--marvelous-tulumba-b5b8db.netlify.app/insert"} style={{ color: 'orange', fontWeight: 'bold', marginBottom: "30px", paddingLeft:"450px", marginRight: "25%" }}>Go to your receipts</button>
 		<div style={{color: 'brown', fontWeight: 'bold',marginLeft: "25%", width:"50%" }}>
 		  {recipes.length > 0 ? 'Available recipes: ' : ''}
 		  {recipes.map((recipe) => (

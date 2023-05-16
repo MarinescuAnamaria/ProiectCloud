@@ -78,7 +78,7 @@ export default function InsertPage() {
           <button
             style={{ marginLeft: '30px' }}
             type="submit"
-            onClick={() => (window.location.href = 'http://localhost:3000/insert')}
+            onClick={() => (window.location.href = 'https://main--marvelous-tulumba-b5b8db.netlify.app//insert')}
             className="text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
           >
             Inapoi la retetele tale

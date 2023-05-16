@@ -40,8 +40,8 @@ export default function MyReceipts() {
               ))}
             </div>
 
-            <button type= "submit"    onClick={() => window.location.href = "http://localhost:3000/new"} style={{ backgroundColor:  "darkblue", color: 'white', fontWeight: 'bold', marginTop:"40px" }}>Scrie o noua reteta </button>
-            <button type= "submit"    onClick={() => window.location.href = "http://localhost:3000"} style={{ backgroundColor:  "brown", color: 'white', fontWeight: 'bold', marginTop:"40px", marginLeft:"40px" }}>Inapoi la pagina principala </button>
+            <button type= "submit"    onClick={() => window.location.href = "https://main--marvelous-tulumba-b5b8db.netlify.app//new"} style={{ backgroundColor:  "darkblue", color: 'white', fontWeight: 'bold', marginTop:"40px" }}>Scrie o noua reteta </button>
+            <button type= "submit"    onClick={() => window.location.href = "https://main--marvelous-tulumba-b5b8db.netlify.app/"} style={{ backgroundColor:  "brown", color: 'white', fontWeight: 'bold', marginTop:"40px", marginLeft:"40px" }}>Inapoi la pagina principala </button>
           </div>
         </section>
       );
