@@ -6,9 +6,10 @@ export default function MainPage() {
   const [items, setItems] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [recipeIngredients, setRecipeIngredients] = useState([]);
 
   async function checkApiKey() {
-    const url = `https://api.spoonacular.com/recipes/complexSearch?query=pizza&apiKey=${'14207be918ab44ff9267c71136ebab96'}`;
+    const url = `https://api.spoonacular.com/recipes/complexSearch?query=pizza?apiKey=${'06f40317e7ad43dab1814bd7d70504fe'}`;
     try {
       const response = await axios.get(url);
       if (response.status === 200) {
@@ -20,13 +21,13 @@ export default function MainPage() {
   }
 
   async function getRecipesByIngredients(ingredients) {
-    const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=${'14207be918ab44ff9267c71136ebab96'}`;
+    const url = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredients}&apiKey=${'06f40317e7ad43dab1814bd7d70504fe'}`;
     const response = await axios.get(url);
     return response.data;
   }
 
   async function getRecipeDetails(recipeId) {
-    const url = `https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=false&apiKey=${'14207be918ab44ff9267c71136ebab96'}`;
+    const url = `https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=false?apiKey=${'06f40317e7ad43dab1814bd7d70504fe'}`;
     const response = await axios.get(url);
     return response.data;
   }
@@ -41,6 +42,8 @@ export default function MainPage() {
   async function handleRecipeClick(recipe) {
     const recipeDetails = await getRecipeDetails(recipe.id);
     setSelectedRecipe(recipeDetails);
+    handleMissingIngredients(recipeDetails);
+    setRecipeIngredients(recipeDetails.extendedIngredients.map(ingredient => ingredient.name));
   }
 
   function handleInputChange(event) {
@@ -62,6 +65,7 @@ export default function MainPage() {
     if (selectedRecipe) {
       getRecipeDetails(selectedRecipe.id).then(recipeDetails => {
         setSelectedRecipe(recipeDetails);
+		setRecipeIngredients(recipeDetails.extendedIngredients.map(ingredient => ingredient.name));
       });
     }
   }, [selectedRecipe]);
@@ -90,6 +94,7 @@ export default function MainPage() {
 		  ))}
 		</div>
 		<button onClick={handleGenerateRecipes} style={{ color: 'green', fontWeight: 'bold', marginLeft: "25%", paddingTop: "10px", paddingBottom:"30px"}}>Generate receipt</button>
+		<button onClick={() => window.location.href = "http://localhost:3000/insert"} style={{ color: 'orange', fontWeight: 'bold', marginBottom: "30px", paddingLeft:"450px", marginRight: "25%" }}>Go to your receipts</button>
 		<div style={{color: 'brown', fontWeight: 'bold',marginLeft: "25%", width:"50%" }}>
 		  {recipes.length > 0 ? 'Available recipes: ' : ''}
 		  {recipes.map((recipe) => (
@@ -97,12 +102,13 @@ export default function MainPage() {
 			  key={recipe.id}
 			  style={{cursor: 'pointer'}}
 			  onClick={async () => {
-				const response = await axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/analyzedInstructions?apiKey=${'14207be918ab44ff9267c71136ebab96'}`);
+				const response = await axios.get(`https://api.spoonacular.com/recipes/${recipe.id}/analyzedInstructions?apiKey=${'06f40317e7ad43dab1814bd7d70504fe'}`);
 				const instructions = response.data[0].steps.map(step => step.step);
 				alert(`Instructions for ${recipe.title}:\n${instructions.join('\n')}`);
 			  }}
 			>
 			  {recipe.title}
+			  
 			</p>
 		  ))}
 		</div>
