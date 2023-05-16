@@ -1,8 +1,8 @@
 // pages/insert.js
-import InsertPage from "@/js/components/InsertPage";
+import Receipts from "@/js/components/MyReceipts";
 
 export default function Insert() {
   return (
-      <InsertPage/>
+      <Receipts/>
   )
 }
